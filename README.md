@@ -14,6 +14,7 @@ A suite of simplified and experimental scripts for web application penetration t
 
 - [Overview](#overview)
 - [Quick Workflow](#quick-workflow)
+- [Custom / Modified Scripts and Attributions](#custom--modified-scripts-and-attributions)
 - [Security Workflow (Detailed)](#security-workflow-detailed)
 - [Repository Structure](#repository-structure)
 - [Prerequisites](#prerequisites)
@@ -46,6 +47,47 @@ This repository is intended for **simplified and experimental** workflows that h
 3. Model threats using [AWSLabs Threat Composer](https://github.com/awslabs/threat-composer) and [OWASP Threat Dragon](https://github.com/OWASP/threat-dragon).
 4. Run [Bandit](https://github.com/PyCQA/bandit) on Python scripts to detect common security issues.
 5. Export findings as SARIF and review in [AperExanimus/neurowall-sarifviewer](https://github.com/AperExanimus/neurowall-sarifviewer).
+
+---
+
+## Custom / Modified Scripts and Attributions
+
+This repository includes custom and/or adapted scripting logic inspired by established security testing and threat modeling resources.
+
+### Custom / Modified Scripts
+
+- `checklist_scan.py`  
+  A custom script derived from and aligned with OWASP checklist methodology for simplified, script-based web security checks.
+
+### Upstream References and Attribution
+
+The following repositories informed workflow design, methodology, or tooling integration:
+
+- **OWASP checklist baseline**  
+  [0xRadi/OWASP-Web-Checklist](https://github.com/0xRadi/OWASP-Web-Checklist)  
+  Referenced for checklist categories and testing control structure used in `checklist_scan.py`.
+
+- **Threat modeling reference tools**  
+  [awslabs/threat-composer](https://github.com/awslabs/threat-composer)  
+  [OWASP/threat-dragon](https://github.com/OWASP/threat-dragon)  
+  Referenced for threat modeling process, prioritization, and model-driven test planning.
+
+- **Python SAST scanning**  
+  [PyCQA/bandit](https://github.com/PyCQA/bandit)  
+  Used for static analysis of Python scripts.
+
+- **SARIF visualization**  
+  [AperExanimus/neurowall-sarifviewer](https://github.com/AperExanimus/neurowall-sarifviewer)  
+  Fork used for offline SARIF review and triage.
+
+- **SSL/TLS testing reference**  
+  [testssl.sh](https://github.com/testssl/testssl.sh)  
+  Referenced for SSL/TLS-oriented testing patterns.
+
+### Attribution Note
+
+All referenced projects remain the work of their respective maintainers and communities.  
+This repository does not claim ownership of upstream tools or standards; it documents how they are used together in this experimental workflow.
 
 ---
 
@@ -163,7 +205,6 @@ Recommended triage process:
 
 - OWASP checklist baseline:  
   [0xRadi/OWASP-Web-Checklist](https://github.com/0xRadi/OWASP-Web-Checklist)
--Specific SSL Test: https://github.com/testssl
 
 - Threat modeling tools:  
   [OWASP/threat-dragon](https://github.com/OWASP/threat-dragon)  
@@ -206,6 +247,3 @@ If contributing, include:
 - Clear reproduction steps
 - Expected vs actual behavior
 - Sample output (sanitized)
-
-
-
