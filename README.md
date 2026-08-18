@@ -1,6 +1,6 @@
 # WebAppSecurityTests
 
-A suite of simplified and experimental scripts for web application penetration testing.
+A suite of simplified and experimental scripts for web application security testing.
 
 ![OWASP Checklist](https://img.shields.io/badge/OWASP-Web_Checklist-darkred?logo=owasp&logoColor=white)
 ![Threat Modeling](https://img.shields.io/badge/Threat_Modeling-Threat_Composer_%2B_Threat_Dragon-blue)
