@@ -153,7 +153,8 @@ def print_report(findings):
             print(f"    Snippet: {item['content'][:120]}")
             print("-" * 50)
         print()
-#Add Sarif output modeled after https://github.com/PyCQA/bandit
+
+# Add Sarif output modeled after https://github.com/PyCQA/bandit
 
 def to_sarif(findings, base_dir):
     base_dir = os.path.abspath(base_dir)
@@ -220,69 +221,17 @@ def to_sarif(findings, base_dir):
                     "rules": rules
                 }
             },
-            "results": results
-        }]
-    }
-    return sarif_doc
-    base_dir = os.path.abspath(base_dir)
-    rules, _ = build_rules_index()
-
-    results = []
-    for f in findings:
-        abs_path = os.path.abspath(f["file"])
-        rel_path = os.path.relpath(abs_path, base_dir).replace("\\", "/")
-
-        level = sarif_level_for_category(f["category"])
-        message = f"{f['issue']} [{f['category']}]"
-
-        results.append({
-            "ruleId": f["rule_id"],
-            "level": level,
-            "message": {"text": message},
-            "locations": [
+            "automationDetails": {
+                "id": "owasp-checklist/manual"
+            },
+            "invocations": [
                 {
-                    "physicalLocation": {
-                        "artifactLocation": {
-                            "uri": rel_path
-                        },
-                        "region": {
-                            "startLine": f["line"]
-                        }
-                    }
+                    "executionSuccessful": True,
+                    "endTimeUtc": datetime.now(timezone.utc).isoformat()
                 }
             ],
-            "properties": {
-                "category": f["category"],
-                "snippet": f["content"][:200]
-            }
-        })
-
-    sarif_doc = {
-        "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
-        "version": "2.1.0",
-        "runs": [
-            {
-                "tool": {
-                    "driver": {
-                        "name": "owasp-checklist-scan",
-                        "organization": "local",
-                        "informationUri": "https://owasp.org/",
-                        "semanticVersion": "0.1.0",
-                        "rules": rules
-                    }
-                },
-                "automationDetails": {
-                    "id": "owasp-checklist/manual"
-                },
-                "invocations": [
-                    {
-                        "executionSuccessful": True,
-                        "endTimeUtc": datetime.now(timezone.utc).isoformat()
-                    }
-                ],
-                "results": results
-            }
-        ]
+            "results": results
+        }]
     }
     return sarif_doc
 
